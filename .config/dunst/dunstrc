@@ -1,0 +1,59 @@
+[global]
+    font = "JetBrainsMono NF 24"
+    allow_markup = yes
+    format = "<b>%s</b>\n%b"
+    sort = yes
+    indicate_hidden = yes
+    alignment = center
+    bounce_freq = 0
+    show_age_threshold = 60
+    word_wrap = yes
+    show_indicators = no
+    ignore_newline = no
+    geometry = "550+600+450"
+    transparency = 0
+    idle_threshold = 120
+    monitor = 3
+    follow = mouse
+    sticky_history = yes
+    line_height = 0
+    separator_height = 2
+    padding = 25
+    horizontal_padding = 8
+    separator_color = "#1d2021"
+    startup_notification = false
+    # https://github.com/knopwob/dunst/issues/26#issuecomment-36159395
+    icon_position = left
+    #icon_folders = /usr/share/icons/elementary/actions/16/
+
+[frame]
+    width = 3
+    color = "#a89984"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    #icon = "" # in general don't show icons
+    foreground = "#a89984"
+    background = "#282828"
+    timeout = 5
+
+[urgency_normal]
+    #icon = "" # in general don't show icons
+    #icon_position = off
+    foreground = "#a89984"
+    background = "#282828"
+    timeout = 20
+
+[urgency_critical]
+    #icon = "" # in general don't show icons
+    #icon_position = off
+    foreground = "#cc241d"
+    background = "#282828"
+    timeout = 0
+    
+; vim:ft=dosini

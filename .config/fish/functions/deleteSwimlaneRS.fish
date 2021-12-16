@@ -1,0 +1,3 @@
+function deleteSwimlaneRS --wraps=kubectl\ get\ rs\ -n\ spinnaker-swimlane\ -o\ json\ \|\ jq\ -r\ \'.items\[\]\|\ select\(.status.replicas\ ==\ 0\)\ \|\ .metadata.name\'\ \|\ xargs\ kubectl\ delete\ -n\ spinnaker-swimlane\ rs --description alias\ deleteSwimlaneRS=kubectl\ get\ rs\ -n\ spinnaker-swimlane\ -o\ json\ \|\ jq\ -r\ \'.items\[\]\|\ select\(.status.replicas\ ==\ 0\)\ \|\ .metadata.name\'\ \|\ xargs\ kubectl\ delete\ -n\ spinnaker-swimlane\ rs
+  kubectl get rs -n spinnaker-swimlane -o json | jq -r '.items[]| select(.status.replicas == 0) | .metadata.name' | xargs kubectl delete -n spinnaker-swimlane rs $argv; 
+end

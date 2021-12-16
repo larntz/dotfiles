@@ -1,0 +1,47 @@
+#! /bin/sh
+
+bash /home/luke.arntz/.screenlayout/three-screens.sh
+
+GTK_THEME=Adwaita:dark
+export GTK_THEME
+
+XDG_DATA_DIRS="$XDG_DATA_DIRS"
+export XDG_DATA_DIRS
+
+systemctl --user import-environment DISPLAY # for clipmenud
+
+if [ -x "$(command -v redshift)" ]; then
+  pkill redshift
+  redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq '.location.lat, .location.lng' | tr '\n' ':' | sed 's/:$//') -b 1:0.80 -P & disown
+fi
+
+#/home/larntz/.bin/change_wallpaper.sh &
+feh --bg-scale $HOME/Pictures/pexels-cátia-matos-1072179.jpg
+wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
+polybar primary & disown
+picom & disown
+# polybar dp2 & disown
+dunst & disown
+sxhkd & disown
+clipmenud & 
+#pasystray &
+
+bspc monitor eDP-1-1  -d 1
+bspc monitor DP-1-2-1 -d 2 3 4
+bspc monitor DP-1-2-2 -d 5 6 7 
+
+bspc config border_width           2
+bspc config window_gap             4 
+bspc config active_border_color \#928374
+bspc config normal_border_color \#83a598
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config click_to_focus       true
+
+bspc rule -a Gimp state=floating follow=on
+bspc rule -a Evolution-alarm-notify state=floating 
+bspc rule -a vmrc state=floating
+bspc rule -a zoom state=floating
+bspc rule -a firefox:Toolkit border=off sticky=on state=floating
+bspc rule -a Gnome-calculator state=floating
