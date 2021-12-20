@@ -1,0 +1,11 @@
+[aws]
+disabled=true
+
+[kubernetes]
+disabled=false
+
+[kubernetes.context_aliases]
+"arn:aws:eks:us-west-2:265337873895:cluster/staging-swimlane-io"="staging-swimlane-io"
+"arn:aws:eks:us-west-2:265337873895:cluster/swimlane-io"="swimlane-io"
+"arn:aws:eks:us-east-1:487219769586:cluster/prod-services-us-east-1-cloud"="prod-services-us-east-1"
+"arn:aws:eks:us-east-1:346665194370:cluster/dev-saas-us-east-1-cloud"="dev-saas-us-east-1-cloud"
