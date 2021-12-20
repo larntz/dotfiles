@@ -73,7 +73,7 @@ font-4 = ${fonts.font-4}
 
 modules-left = bspwm music
 modules-center = date
-modules-right = dunst cpu memory pulseaudio
+modules-right = cpu memory pulseaudio dunst 
 wm-restack = bspwm
 
 ;scroll-up = #bspwm.next
@@ -174,7 +174,6 @@ label-font = 1
 [module/music]
 type = custom/script
 exec = $HOME/.config/polybar/now-playing.sh
-#exec = /home/larntz/.bin/dunstify_music.py brief
 click-left = playerctl play-pause
 click-right = playerctl next
 interval = 1
@@ -191,6 +190,6 @@ format-foreground = ${colors.bg-darker}
 type = custom/ipc
 initial = 1
 format-foreground = ${colors.bg-blue}
-format-margin = 2
+format-margin = 1
 hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
 hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
