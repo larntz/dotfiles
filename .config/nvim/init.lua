@@ -25,6 +25,8 @@ require "paq" {
   'eddyekofo94/gruvbox-flat.nvim';
 	'lewis6991/gitsigns.nvim';
 	'lukas-reineke/indent-blankline.nvim';
+  'kyazdani42/nvim-web-devicons';
+  'kyazdani42/nvim-tree.lua';
 }
 
 local nvim_lsp = require('lspconfig')
@@ -82,7 +84,6 @@ require('rust')
 -- require('lspconfig').vuels.setup{}
 -- require('lspconfig').tsserver.setup{}
 
-
 require('go').config.update_tool('quicktype', function(tool)
     tool.pkg_mgr = 'npm'
 end)
@@ -114,3 +115,15 @@ vim.g.rustfmt_autosave = 1
 
 vim.cmd('autocmd FileType markdown setlocal spell spelllang=en_us')
 vim.cmd('autocmd FileType asciidoc setlocal spell spelllang=en_us')
+
+
+vim.cmd('nnoremap <C-n> :NvimTreeToggle<CR>')
+vim.cmd('nnoremap <leader>r :NvimTreeRefresh<CR>')
+vim.cmd('nnoremap <leader>n :NvimTreeFindFile<CR>')
+vim.cmd('highlight NvimTreeFolderIcon guibg=blue')
+require('nvim-tree').setup({
+    filters = {
+      dotfiles = true,
+      custom = {}
+    }
+  })

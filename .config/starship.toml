@@ -8,4 +8,5 @@ disabled=false
 "arn:aws:eks:us-west-2:265337873895:cluster/staging-swimlane-io"="staging-swimlane-io"
 "arn:aws:eks:us-west-2:265337873895:cluster/swimlane-io"="swimlane-io"
 "arn:aws:eks:us-east-1:487219769586:cluster/prod-services-us-east-1-cloud"="prod-services-us-east-1"
-"arn:aws:eks:us-east-1:346665194370:cluster/dev-saas-us-east-1-cloud"="dev-saas-us-east-1-cloud"
+"arn:aws:eks:us-east-1:016757552019:cluster/prod-shared-cloud-us-east-1"="prod-shared-cloud-us-east-1"
+"arn:aws:eks:us-east-1:346665194370:cluster/dev-shared-cloud-us-east-1"="dev-shared-cloud-us-east-1"

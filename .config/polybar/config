@@ -40,6 +40,8 @@ font-1 = "JetBrainsMono Nerd Font:style=Bold:size=10;3"
 font-2 = "JetBrainsMono Nerd Font:size=15;5"
 font-3 = "Material Icons:size=16;5"
 font-4 = "Material Icons:size=18;5"
+font-5 = "FontAwesome:pixelsize=14;0"
+font-6 = "Siji:pixelsize=10;1"
 
 [global/wm]
 margin-bottom = 0
@@ -70,10 +72,11 @@ font-1 = ${fonts.font-1}
 font-2 = ${fonts.font-2}
 font-3 = ${fonts.font-3}
 font-4 = ${fonts.font-4}
+font-5 = ${fonts.font-5}
 
 modules-left = bspwm music
 modules-center = date
-modules-right = cpu memory pulseaudio dunst 
+modules-right = weather cpu memory pulseaudio dunst 
 wm-restack = bspwm
 
 ;scroll-up = #bspwm.next
@@ -185,6 +188,14 @@ format-margin = 3
 format-padding = 2
 format-background = ${colors.bg-blue} 
 format-foreground = ${colors.bg-darker}
+
+[module/weather]
+type = custom/script
+exec = $HOME/.config/polybar/weather.sh
+interval = 600
+format = <label>
+format-margin = 2
+label-active-font = 3
 
 [module/dunst]
 type = custom/ipc
