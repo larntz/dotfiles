@@ -19,7 +19,7 @@ if (( $LAST_REPORT_SECONDS > 1800 )); then
   curl -s -o $HOME/.weather "https://api.weatherapi.com/v1/current.json?key=$API_KEY&q=$ZIPCODE&aqi=no"
 fi
 
-CURRENT_TEMP=$(cat $REPORT | jq -r .current.feelslike_f)
+CURRENT_TEMP=$(printf "%.0f" $(cat $REPORT | jq -r .current.feelslike_f))
 CONDITION=$(cat $REPORT | jq -r .current.condition.code)
 CONDITION=\\u$CONDITION
 DEGREE=\\u00B0
