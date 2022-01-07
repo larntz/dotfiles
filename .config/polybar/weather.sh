@@ -41,4 +41,4 @@ ICON=$(cat $REPORT | jq -r '.weather[0].icon')
 
 DEGREE=\\u00B0
 
-echo -e "$CURRENT_TEMP${DEGREE}f %{F#458588}%{T7}$(get_icon "$ICON")%{F-}%{T0}${CONDITION} "
+echo -e "$CURRENT_TEMP${DEGREE} %{F#458588}%{T7}$(get_icon "$ICON")%{F-}%{T0}${CONDITION} "
