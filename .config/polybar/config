@@ -41,7 +41,7 @@ font-2 = "JetBrainsMono Nerd Font:size=15;5"
 font-3 = "Material Icons:size=16;5"
 font-4 = "Material Icons:size=18;5"
 font-5 = "FontAwesome:pixelsize=14;0"
-font-6 = "Siji:pixelsize=10;1"
+font-6 = "Weather Icons:size=14;3"
 
 [global/wm]
 margin-bottom = 0
@@ -73,6 +73,7 @@ font-2 = ${fonts.font-2}
 font-3 = ${fonts.font-3}
 font-4 = ${fonts.font-4}
 font-5 = ${fonts.font-5}
+font-6 = ${fonts.font-6}
 
 modules-left = bspwm music
 modules-center = date
@@ -86,14 +87,15 @@ cursor-click = pointer
 ;cursor-scroll = ns-resize
 
 ;; ========================
+;; modules
 
 [module/pulseaudio]
 type = internal/pulseaudio
 use-ui-max = false
 click-middle = pavucontrol
 click-right = pavucontrol
-format-volume = <ramp-volume> <label-volume>
-format-volume-margin = 1
+format-volume = <label-volume> <ramp-volume> 
+format-padding-right = 1
 label-volume = %percentage:2%%
 ramp-volume-0 = %{T3}奄%{T0} 
 ramp-volume-1 = %{T3}奔%{T0}
@@ -105,21 +107,6 @@ format-muted = <label-muted>
 format-muted-margin = 1
 format-muted-foreground = ${colors.bg-blue}
 
-
-[module/bspwm]
-type = internal/bspwm
-pin-workspaces = true
-enable-click = false
-;format = <label-monitor> <label-state>
-format = <label-state>
-;label-focused-foreground = ${colors.foreground-alt}
-format-margin = 2
-label-focused = %index:2%
-label-empty = 
-label-dimmed = 
-label-urgent = 
-label-occupied = 
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:100:...%
@@ -127,12 +114,10 @@ label = %title:0:100:...%
 [module/cpu]
 type = internal/cpu
 interval = 2
-
-format = <ramp-load><label> 
-format-padding = 1
+format = <label> <ramp-load>
+format-padding-right = 1
 label = %percentage:2%%
 label-foreground = ${colors.foreground}
-
 ramp-load-0 = %{T3} %{T-}
 ramp-load-1 = %{T3} %{T-}
 ramp-load-2 = %{T3} %{T-}
@@ -149,12 +134,10 @@ ramp-load-5-foreground = ${colors.bg-red}
 [module/memory]
 type = internal/memory
 interval = 2 
-
-format = <ramp-used><label>
+format = <label> <ramp-used>
 format-padding = 1
 label = %percentage_used:2%%
 label-foreground = ${colors.fg}
-
 ; %{0-35} offset to left so it mushes against the cpu gauge
 ramp-used-0 = %{T3} %{T-}
 ramp-used-1 = %{T3} %{T-}
@@ -166,6 +149,21 @@ ramp-used-1-foreground = ${colors.bg-blue}
 ramp-used-2-foreground = ${colors.bg-orange}
 ramp-used-3-foreground = ${colors.bg-yellow}
 ramp-used-4-foreground = ${colors.bg-red}
+
+[module/weather]
+type = custom/script
+exec = $HOME/.config/polybar/weather.sh
+format-padding-right = 1 
+interval = 60
+
+[module/dunst]
+type = custom/ipc
+initial = 1
+format-foreground = ${colors.bg-blue}
+format-padding = 1
+hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
+hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
+
 
 [module/date]
 type = internal/date
@@ -189,18 +187,16 @@ format-padding = 2
 format-background = ${colors.bg-blue} 
 format-foreground = ${colors.bg-darker}
 
-[module/weather]
-type = custom/script
-exec = $HOME/.config/polybar/weather.sh
-interval = 600
-format = <label>
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+enable-click = false
+;format = <label-monitor> <label-state>
+format = <label-state>
+;label-focused-foreground = ${colors.foreground-alt}
 format-margin = 2
-label-active-font = 3
-
-[module/dunst]
-type = custom/ipc
-initial = 1
-format-foreground = ${colors.bg-blue}
-format-margin = 1
-hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
-hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
+label-focused = %index:2%
+label-empty = 
+label-dimmed = 
+label-urgent = 
+label-occupied = 

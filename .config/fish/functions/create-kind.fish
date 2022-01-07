@@ -1,3 +1,3 @@
-function create-kind --argument cluster_name cluster_version cluster_size
-kind create cluster --config $HOME/.config/kind/$cluster_size/$cluster_version.yaml --name $cluster_name
+function create-kind 
+  $HOME/Repos/larntz-agocd-dev/kind/kind-cluster/create-cluster.sh 
 end

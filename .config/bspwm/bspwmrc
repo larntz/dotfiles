@@ -19,8 +19,9 @@ if [ -x "$(command -v redshift)" ]; then
   redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq '.location.lat, .location.lng' | tr '\n' ':' | sed 's/:$//') -b 1:0.80 -P & disown
 fi
 
-#/home/larntz/.bin/change_wallpaper.sh &
-feh --bg-scale $HOME/Pictures/pexels-cátia-matos-1072179.jpg
+# set a wallpaper
+$HOME/.config/bspwm/random-wallpaper.sh $HOME/Pictures/Wallpapers
+
 wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
 polybar primary & disown
 picom & disown
