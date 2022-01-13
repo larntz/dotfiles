@@ -102,9 +102,9 @@ ramp-volume-1 = %{T3}奔%{T0}
 ramp-volume-2 = %{T3}墳%{T0}
 ramp-volume-foreground = ${colors.bg-blue}
 
-label-muted = %{T3}ﱝ%{T0} %percentage:2%%
+label-muted = %percentage:2%% %{T3}ﱝ%{T0} 
 format-muted = <label-muted>
-format-muted-margin = 1
+;format-muted-margin = 1
 format-muted-foreground = ${colors.bg-blue}
 
 [module/xwindow]
@@ -164,7 +164,6 @@ format-padding = 2
 module-margin-right = 2
 hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
 hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
-
 
 [module/date]
 type = internal/date

@@ -31,9 +31,12 @@ sxhkd & disown
 clipmenud & 
 #pasystray &
 
-bspc monitor eDP-1-1 -d 1 2
+bspc monitor eDP-1-1  -d 1 2
 bspc monitor DP-1-2-1 -d 3 4 5 6
 bspc monitor DP-1-2-2 -d 7 8 9 10
+
+# setting right padding on laptop screen for zoom, aws vpn, etc.
+bspc config -m eDP-1-1 right_padding 325
 
 bspc config border_width           1
 bspc config window_gap             0 
