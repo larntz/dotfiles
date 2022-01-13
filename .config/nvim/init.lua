@@ -87,6 +87,7 @@ require('rust')
 require('go').config.update_tool('quicktype', function(tool)
     tool.pkg_mgr = 'npm'
 end)
+require'lspconfig'.terraformls.setup{}
 require('complete')
 require('statusline')
 require('gitsigns').setup()
