@@ -48,7 +48,7 @@ XF86AudioMute
     #/home/larntz/.bin/volume_control.py mute
     #amixer set Master toggle;/home/larntz/.bin/dunstify_volume.sh
 XF86AudioRaiseVolume
-    /usr/local/bin/volume-up.sh
+    $HOME/.config/sxhkd/volume-up.sh
     #pactl set-sink-volume @DEFAULT_SINK@ +5%
     #/home/larntz/.bin/volume_control.py up
     #amixer set Master 10%+;/home/larntz/.bin/dunstify_volume.sh
