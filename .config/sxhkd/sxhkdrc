@@ -6,11 +6,9 @@
 super + Return
     alacritty
 
-
-
 # program launcher
 super + @space
-    rofi -combi-modi window,drun,ssh -theme gruvbox-dark-hard -show combi 
+    rofi -combi-modi window,drun -theme gruvbox-dark-hard -show combi 
     #-font  "JetBrainsMono 10"
 
 # make sxhkd reload its configuration files:
@@ -29,19 +27,17 @@ super + i
 super + a
     /home/larntz/.bin/dunstify_music.py notify
 
-# clipmenu
-#super + v
-#    CM_LAUNCHER=rofi clipmenu -theme gruvbox-dark-hard 
-    #-font "JetBrainsMono 10"
+# screenshots
+Print
+  scrot -s "$HOME/Pictures/screenshots/screenshot_%Y%m%d_%H%M%S.png" -e 'xclip -selection clipboard -t image/png -i $f'
 
 # change background image
 #super + b
 #    /home/larntz/.bin/change_wallpaper.sh
 
 #
-# audio hotkeys
+# XF86Audio hotkeys
 #
-#XF86Audio
 
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -88,9 +84,6 @@ super + y
 super + g
 	bspc node -s biggest
 
-# screenshots
-Print
-  scrot -s "$HOME/Pictures/screenshots/screenshot_%Y%m%d_%H%M%S.png" -e 'xclip -selection clipboard -t image/png -i $f'
 
 #
 # state/flags
@@ -147,12 +140,12 @@ super + {_,shift + }{1-9,0}
 #
 
 # preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+#super + ctrl + {h,j,k,l}
+#	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+#super + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
 super + ctrl + space

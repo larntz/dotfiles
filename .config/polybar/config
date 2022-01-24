@@ -38,8 +38,8 @@ semi-trans-black = #aa000000
 font-0 = "JetBrainsMono Nerd Font:style=Medium:size=10;3"
 font-1 = "JetBrainsMono Nerd Font:style=Bold:size=10;3"
 font-2 = "JetBrainsMono Nerd Font:size=15;5"
-font-3 = "Material Icons:size=16;5"
-font-4 = "Material Icons:size=18;5"
+font-3 = "Material\-Design\-Iconic\-Font:size=16;5"
+font-4 = "Material\-Design\-Iconic\-Font:size=18;5"
 font-5 = "FontAwesome:pixelsize=14;0"
 font-6 = "Weather Icons:size=13;4"
 
@@ -47,8 +47,33 @@ font-6 = "Weather Icons:size=13;4"
 margin-bottom = 0
 margin-top = 0
 
+[bar/third]
+monitor = ${env:MONITOR:eDP-1}
+wm-restack = bspwm
+modules-left = bspwm
+width = 100%
+height = 25
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-size = 0 
+font-0 = ${fonts.font-0}
+
+[bar/second]
+monitor = ${env:MONITOR:DP-2-1}
+wm-restack = bspwm
+modules-left = bspwm
+modules-right = xwindow 
+width = 100%
+height = 25
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-size = 0 
+font-0 = ${fonts.font-0}
+
 [bar/primary]
-monitor = ${env:MONITOR:DP-1-2-2}
+monitor = ${env:MONITOR:DP-2-2}
 ;bottom = true
 enable-ipc = true
 width = 100%
@@ -110,20 +135,22 @@ format-muted-foreground = ${colors.bg-blue}
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:100:...%
+label-padding-right = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = <label> <ramp-load>
-format-padding-right = 1
+format = <label><ramp-load>
+ramp-load-padding-right = 1
+label-padding-right = 1
 label = %percentage:2%%
 label-foreground = ${colors.foreground}
-ramp-load-0 = %{T3} %{T-}
-ramp-load-1 = %{T3} %{T-}
-ramp-load-2 = %{T3} %{T-}
-ramp-load-3 = %{T3} %{T-}
-ramp-load-4 = %{T3} %{T-}
-ramp-load-5 = %{T3} %{T-}
+ramp-load-0 = %{T3}%{T-}
+ramp-load-1 = %{T3}%{T-}
+ramp-load-2 = %{T3}%{T-}
+ramp-load-3 = %{T3}%{T-}
+ramp-load-4 = %{T3}%{T-}
+ramp-load-5 = %{T3}%{T-}
 ramp-load-0-foreground = ${colors.bg-blue}
 ramp-load-1-foreground = ${colors.bg-blue}
 ramp-load-2-foreground = ${colors.bg-blue}
@@ -195,7 +222,7 @@ enable-click = false
 format = <label-state>
 ;label-focused-foreground = ${colors.foreground-alt}
 format-margin = 2
-label-focused = %index:2%
+label-focused = %name:2%
 label-empty = 
 label-dimmed = 
 label-urgent = 

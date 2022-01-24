@@ -6,9 +6,9 @@ ALBUM=$(playerctl -s metadata album)
 STATUS=$(playerctl -s status)
 
 if [ "$STATUS" == "Playing" ]; then
-  echo -e '\ue037' $ARTIST - $TITLE
+  echo -e '\uf3aa' $ARTIST - $TITLE
 elif [ "$STATUS" == "Paused" ]; then
-  echo -e '\ue034' $ARTIST - $TITLE
+  echo -e '\uf3a7' $ARTIST - $TITLE
 else
   echo " "
 fi

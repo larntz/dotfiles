@@ -1,10 +1,24 @@
 #! /bin/sh
 
-bash /home/luke.arntz/.screenlayout/three-screens.sh
+# create this script with arandr
+# xrandr --output eDP-1 --mode 1920x1080 --pos 960x1080 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-2-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2-3 --off
+bash $HOME/.config/bspwm/xrandr-three-screens.sh
 sleep 3
 
-xset +fp /home/luke.arntz/.local/share/fonts
+# fonts
+xset +fp $HOME/.fonts
 xset fp rehash
+
+# screensaver and auto lock
+#xset dpms 0 300 0
+export XSECURELOCK_SAVER=saver_xscreensaver
+export XSECURELOCK_DIM_COLOR=black
+export XSECURELOCK_AUTH_BACKGROUND_COLOR=black
+export XSECURELOCK_PASSWORD_PROMPT=asterisks
+export XSECURELOCK_SHOW_HOSTNAME=1
+xset s 600 5
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+
 
 GTK_THEME=Adwaita:dark
 export GTK_THEME
@@ -20,33 +34,39 @@ if [ -x "$(command -v redshift)" ]; then
 fi
 
 # set a wallpaper
-$HOME/.config/bspwm/random-wallpaper.sh $HOME/Pictures/Wallpapers
+#$HOME/.config/bspwm/random-wallpaper.sh $HOME/Pictures/Wallpapers
+# need to recreate script
+feh --bg-fill $HOME/Pictures/Wallpapers/pexels-harun-tan-3980364.jpg
 
 wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
 polybar primary & disown
+polybar second & disown
+polybar third & disown
 picom & disown
 # polybar dp2 & disown
 dunst & disown
 sxhkd & disown
-clipmenud & 
-#pasystray &
 
-bspc monitor eDP-1-1  -d 1 2
-bspc monitor DP-1-2-1 -d 3 4 5 6
-bspc monitor DP-1-2-2 -d 7 8 9 10
+bspc monitor DP-2-2 -d 1 2 3 4
+bspc monitor DP-2-1 -d 5 6 7 8
+bspc monitor eDP-1  -d 9 10
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
 
 # setting right padding on laptop screen for zoom, aws vpn, etc.
-bspc config -m eDP-1-1 right_padding 325
+bspc config -m eDP-1 right_padding 325
 
-bspc config border_width           1
-bspc config window_gap             0 
-bspc config active_border_color '#282828'
-bspc config focused_border_color '#282828'
-bspc config normal_border_color '#1d2021'
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
-bspc config click_to_focus       true
+bspc config border_width          2
+bspc config window_gap            5 
+bspc config focused_border_color  '#458588' # Color of the border of a focused window of a focused monitor.
+bspc config active_border_color   '#282828' # Color of the border of a focused window of an unfocused monitor.
+bspc config normal_border_color   '#282828' # Color of the border of an unfocused window.
+bspc config split_ratio           0.52
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
+bspc config click_to_focus        true
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
 
 bspc rule -a Gimp state=floating follow=on
 bspc rule -a Evolution-alarm-notify state=floating 
