@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# polkit agent
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & 
+
 # create this script with arandr
 # xrandr --output eDP-1 --mode 1920x1080 --pos 960x1080 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-2-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2-3 --off
 bash $HOME/.config/bspwm/xrandr-three-screens.sh
@@ -54,7 +57,9 @@ bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 
 # setting right padding on laptop screen for zoom, aws vpn, etc.
-bspc config -m eDP-1 right_padding 325
+#bspc config -m eDP-1 right_padding 325
+bspc config -d 10 right_padding 325
+
 
 bspc config border_width          2
 bspc config window_gap            5 

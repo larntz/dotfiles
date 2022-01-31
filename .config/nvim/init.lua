@@ -105,6 +105,7 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.mouse = "n"
+vim.o.termguicolors = true
 -- vim.o.cmdheight = 2
 
 vim.g.gruvbox_transparent = true
