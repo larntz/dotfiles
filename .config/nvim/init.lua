@@ -18,6 +18,7 @@ require "paq" {
 	'nvim-treesitter/nvim-treesitter';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
+  'hashivim/vim-terraform';
 	'nvim-telescope/telescope.nvim';
 	'hrsh7th/nvim-compe';
 	'kyazdani42/nvim-web-devicons';
@@ -91,6 +92,13 @@ require'lspconfig'.terraformls.setup{}
 require('complete')
 require('statusline')
 require('gitsigns').setup()
+
+-- terraform stuff
+vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
 
 vim.lsp.buf.formatting_sync()

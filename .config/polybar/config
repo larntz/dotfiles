@@ -154,7 +154,7 @@ ramp-load-5 = %{T3}%{T-}
 ramp-load-0-foreground = ${colors.bg-blue}
 ramp-load-1-foreground = ${colors.bg-blue}
 ramp-load-2-foreground = ${colors.bg-blue}
-ramp-load-3-foreground = ${colors.bg-orange}
+ramp-load-3-foreground = ${colors.bg-blue}
 ramp-load-4-foreground = ${colors.bg-yellow}
 ramp-load-5-foreground = ${colors.bg-red}
 
@@ -173,7 +173,7 @@ ramp-used-3 = %{T3} %{T-}
 ramp-used-4 = %{T3} %{T-}
 ramp-used-0-foreground = ${colors.bg-blue}
 ramp-used-1-foreground = ${colors.bg-blue}
-ramp-used-2-foreground = ${colors.bg-orange}
+ramp-used-2-foreground = ${colors.bg-blue}
 ramp-used-3-foreground = ${colors.bg-yellow}
 ramp-used-4-foreground = ${colors.bg-red}
 
