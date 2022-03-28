@@ -37,9 +37,8 @@ if [ -x "$(command -v redshift)" ]; then
 fi
 
 # set a wallpaper
-#$HOME/.config/bspwm/random-wallpaper.sh $HOME/Pictures/Wallpapers
-# need to recreate script
-feh --bg-fill $HOME/Pictures/Wallpapers/pexels-harun-tan-3980364.jpg
+feh --bg-fill (find $HOME/Pictures/Wallpapers/dark -type f | shuf -n 1)
+
 
 wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
 polybar primary & disown

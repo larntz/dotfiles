@@ -1,3 +1,3 @@
-function V --wraps='source /home/luke.arntz/.local/virtualenvs/lasrv/bin/activate.fish' --description 'alias V=source /home/luke.arntz/.local/virtualenvs/lasrv/bin/activate.fish'
-  source /home/luke.arntz/.local/virtualenvs/lasrv/bin/activate.fish $argv; 
+function V --wraps='source /home/larntz/.local/virtualenvs/lasrv/bin/activate.fish' --description 'alias V=source /home/larntz/.local/virtualenvs/lasrv/bin/activate.fish'
+  source /home/larntz/.local/virtualenvs/lasrv/bin/activate.fish $argv; 
 end
