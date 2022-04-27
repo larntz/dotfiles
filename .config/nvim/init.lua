@@ -80,6 +80,8 @@ for _, lsp in ipairs(servers) do
 end
 
 require('rust')
+require'lspconfig'.jsonnet_ls.setup{}
+
 -- require('lspconfig').gopls.setup({})
 -- require('lspconfig').pyright.setup{}
 -- require('lspconfig').vuels.setup{}
@@ -99,6 +101,8 @@ vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
+vim.cmd([[autocmd BufRead,BufNewFile *.jsonnet,*.libjsonnet set filetype=jsonnet]])
 
 
 vim.lsp.buf.formatting_sync()
@@ -136,7 +140,5 @@ require('nvim-tree').setup({
       dotfiles = true,
       custom = {}
     },
-    view = {
-      auto_resize=true
-    }
+    view = {}
   })
