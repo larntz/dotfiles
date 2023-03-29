@@ -104,4 +104,5 @@ local rust_opts = {
     }, -- rust-analyer options
 }
 
-require("rust-tools").setup(rust_opts)
+-- require("rust-tools").setup(rust_opts)
+require("rust-tools").setup()

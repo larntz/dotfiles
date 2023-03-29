@@ -27,9 +27,13 @@ super + i
 super + a
     /home/larntz/.bin/dunstify_music.py notify
 
+# dunst notification history
+#super + alt + @space
+#  dunstctl history-pop
+
 # screenshots
 Print
-  scrot -s "$HOME/Pictures/screenshots/screenshot_%Y%m%d_%H%M%S.png" -e 'xclip -selection clipboard -t image/png -i $f'
+  scrot -s "$HOME/Pictures/Screenshots/screenshot_%Y%m%d_%H%M%S.png" -e 'xclip -selection clipboard -t image/png -i $f'
 
 # change background image
 #super + b

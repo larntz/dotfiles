@@ -1,35 +1,121 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
-# Colors (Gruvbox dark)
-colors:
+schemes:
+  nord: &larntz
+    primary:
+      background: '#011b55'
+      foreground: '#eae2b7'
+
+     # Normal colors
+    normal:
+      black:   '#3B4252'
+      red:     '#bb3e03'
+      green:   '#A3BE8C'
+      yellow:  '#ee9b00'
+      blue:    '#0077b6'
+      magenta: '#B48EAD'
+      cyan:    '#88C0D0'
+      white:   '#eae2b7'
+
+    # Bright colors
+    bright:
+      black:   '#4C566A'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#ffb703'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#219ebc'
+      white:   '#eae2b7'
+
+  # https://github.com/vuldronaii/alacritty-dark-blue/blob/main/alacritty.yml
+  nord: &nord
+    primary:
+      background: '#003049'
+      foreground: '#eae2b7'
+
+     # Normal colors
+    normal:
+      black:   '#3B4252'
+      red:     '#bb3e03'
+      green:   '#A3BE8C'
+      yellow:  '#ee9b00'
+      blue:    '#0077b6'
+      magenta: '#B48EAD'
+      cyan:    '#88C0D0'
+      white:   '#eae2b7'
+
+    # Bright colors
+    bright:
+      black:   '#4C566A'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#ffb703'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#219ebc'
+      white:   '#eae2b7'
+
+  # (Pencil Light)
+  # Default Colors
+  pencil_light: &pencilLight
+    primary:
+      background: '#f1f1f1'
+      foreground: '#424242'
+    # Normal colors
+    normal:
+      black:   '#212121'
+      red:     '#c30771'
+      green:   '#10a778'
+      yellow:  '#a89c14'
+      blue:    '#008ec4'
+      magenta: '#523c79'
+      cyan:    '#20a5ba'
+      white:   '#e0e0e0'
+    # Bright colors
+    bright:
+      black:   '#212121'
+      red:     '#fb007a'
+      green:   '#5fd7af'
+      yellow:  '#f3e430'
+      blue:    '#20bbfc'
+      magenta: '#6855de'
+      cyan:    '#4fb8cc'
+      white:   '#f1f1f1'
+
+  # (Gruvbox dark)
   # Default colors
-  primary:
-    # hard contrast: background = '0x1d2021'
-    background: '0x282828'
-    # soft contrast: background = '0x32302f'
-    foreground: '0xebdbb2'
+  gruvbox_dark: &gruvboxDark
+    primary:
+      # hard contrast: background = '0x1d2021'
+      background: '0x282828'
+      # soft contrast: background = '0x32302f'
+      foreground: '0xebdbb2'
 
-  # Normal colors
-  normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0xa89984'
+    # Normal colors
+    normal:
+      black:   '0x282828'
+      red:     '0xcc241d'
+      green:   '0x98971a'
+      yellow:  '0xd79921'
+      blue:    '0x458588'
+      magenta: '0xb16286'
+      cyan:    '0x689d6a'
+      white:   '0xa89984'
 
-  # Bright colors
-  bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
+    # Bright colors
+    bright:
+      black:   '0x928374'
+      red:     '0xfb4934'
+      green:   '0xb8bb26'
+      yellow:  '0xfabd2f'
+      blue:    '0x83a598'
+      magenta: '0xd3869b'
+      cyan:    '0x8ec07c'
+      white:   '0xebdbb2'
+
+colors: *larntz
+
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
@@ -55,6 +141,7 @@ colors:
   #TERM: xterm-256color
 
 window:
+  opacity: 1 #0.90
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -184,7 +271,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 9
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -389,9 +476,11 @@ bell:
 
 # Background opacity
 #
+# DEPRECATED use window.opacity instead
+#
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.90
+#background_opacity: 0.90
 
 selection:
   # This string contains all characters that are used as separators for
@@ -410,7 +499,7 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Underline
+    shape: Beam
 
     # Cursor blinking state
     #

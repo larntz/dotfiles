@@ -28,6 +28,7 @@ require "paq" {
 	'lukas-reineke/indent-blankline.nvim';
   'kyazdani42/nvim-web-devicons';
   'kyazdani42/nvim-tree.lua';
+  'ekickx/clipboard-image.nvim';
 }
 
 local nvim_lsp = require('lspconfig')
@@ -61,7 +62,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
   buf_set_keymap('n', 'gt', '<cmd>:GoTest<CR>', opts)
 
 end
@@ -81,6 +82,13 @@ end
 
 require('rust')
 require'lspconfig'.jsonnet_ls.setup{}
+require'lspconfig'.yamlls.setup{
+    settings = {
+        yaml = {
+           schemas = { kubernetes = "globPattern" },
+      }
+   }
+}
 
 -- require('lspconfig').gopls.setup({})
 -- require('lspconfig').pyright.setup{}
@@ -105,7 +113,7 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 vim.cmd([[autocmd BufRead,BufNewFile *.jsonnet,*.libjsonnet set filetype=jsonnet]])
 
 
-vim.lsp.buf.formatting_sync()
+vim.lsp.buf.format()
 vim.diagnostic.open_float()
 vim.o.completeopt = "menuone,noselect"
 vim.o.signcolumn = "yes"
@@ -123,7 +131,10 @@ vim.o.termguicolors = true
 vim.g.gruvbox_transparent = true
 vim.g.gruvbox_italic_functions = true
 vim.g.gruvbox_flat_style = "dark"
-vim.cmd('colorscheme gruvbox-flat')
+
+--vim.cmd('colorscheme gruvbox-flat')
+--vim.cmd('colorscheme blue')
+vim.cmd('colorscheme zellner')
 
 vim.g.rustfmt_autosave = 1
 
@@ -142,3 +153,15 @@ require('nvim-tree').setup({
     },
     view = {}
   })
+
+
+--- clipboard image
+-- save images in the same dir as the file being edited
+require'clipboard-image'.setup {
+  default = {
+   img_dir = {"%:p:h", "img"}
+  }
+}
+
+-- open file in firefox (to see images!)
+vim.cmd('nnoremap <C-b> :!/usr/local/firefox/firefox % &<CR>')

@@ -23,7 +23,7 @@ xset s 600 5
 xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
 
-GTK_THEME=Adwaita:dark
+GTK_THEME=Adwaita:light
 export GTK_THEME
 
 XDG_DATA_DIRS="$XDG_DATA_DIRS"
@@ -36,11 +36,7 @@ if [ -x "$(command -v redshift)" ]; then
   redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq '.location.lat, .location.lng' | tr '\n' ':' | sed 's/:$//') -b 1:0.80 -P & disown
 fi
 
-# set a wallpaper
-feh --bg-fill (find $HOME/Pictures/Wallpapers/dark -type f | shuf -n 1)
-
-
-wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
+#wmname LG3D # for java stuff like intellij https://www.reddit.com/r/bspwm/comments/267srd/problem_with_intellij_bspwm/
 polybar primary & disown
 polybar second & disown
 polybar third & disown
@@ -78,3 +74,9 @@ bspc rule -a vmrc state=floating
 bspc rule -a zoom state=floating
 bspc rule -a firefox:Toolkit border=off sticky=on state=floating
 bspc rule -a Gnome-calculator state=floating
+
+
+# set a wallpaper
+#feh --bg-fill (find $HOME/Pictures/Wallpapers/dark -type f | shuf -n 1)
+
+
