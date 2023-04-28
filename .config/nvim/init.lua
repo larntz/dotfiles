@@ -2,19 +2,20 @@
 -- https://github.com/savq/paq-nvim
 --
 -- linux
--- git clone --depth=1 https://github.com/savq/paq-nvim.git \
---  "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+-- git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 --
 --  windows
 --  git clone https://github.com/savq/paq-nvim.git "$env:LOCALAPPDATA\nvim-data\site\pack\paqs\start\paq-nvim"
 --
 
 require "paq" {
+  'letorbi/vim-colors-modern-borland';
 	'savq/paq-nvim'; 
 	'neovim/nvim-lspconfig';
 	'simrat39/rust-tools.nvim';
 	'rust-lang/rust.vim';
-	'crispgm/nvim-go';
+	--'crispgm/nvim-go';
+  'ray-x/go.nvim';
 	'nvim-treesitter/nvim-treesitter';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
@@ -29,7 +30,34 @@ require "paq" {
   'kyazdani42/nvim-web-devicons';
   'kyazdani42/nvim-tree.lua';
   'ekickx/clipboard-image.nvim';
+  'rebelot/kanagawa.nvim';
+  {'rose-pine/neovim', as = 'rose-pine'};
 }
+
+-----
+---- Detect Gnome dark mode and set theme (light is default)
+--
+-- vim.g.gruvbox_transparent = true
+-- vim.g.gruvbox_italic_functions = true
+-- vim.g.gruvbox_flat_style = "dark"
+-- vim.cmd('colorscheme gruvbox-flat')
+--
+-- vim.g.BorlandStyle = "classic"
+-- vim.cmd('colorscheme borland')
+
+--vim.cmd('colorscheme blue')
+--vim.cmd('colorscheme zellner')
+--vim.cmd('colorscheme kanagawa')
+local cs = io.popen('gsettings get org.gnome.desktop.interface color-scheme')
+local cs_result = cs:read("*a")
+cs:close()
+if string.find(cs_result,"dark") then
+  --vim.cmd('colorscheme gruvbox-flat')
+  vim.cmd('colorscheme kanagawa-wave')
+else
+  vim.cmd('colorscheme rose-pine-dawn')
+end
+
 
 local nvim_lsp = require('lspconfig')
 
@@ -67,6 +95,15 @@ local on_attach = function(client, bufnr)
 
 end
 
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -81,6 +118,7 @@ for _, lsp in ipairs(servers) do
 end
 
 require('rust')
+require('go').setup()
 require'lspconfig'.jsonnet_ls.setup{}
 require'lspconfig'.yamlls.setup{
     settings = {
@@ -95,9 +133,9 @@ require'lspconfig'.yamlls.setup{
 -- require('lspconfig').vuels.setup{}
 -- require('lspconfig').tsserver.setup{}
 
-require('go').config.update_tool('quicktype', function(tool)
-    tool.pkg_mgr = 'npm'
-end)
+-- require('go').config.update_tool('quicktype', function(tool)
+--     tool.pkg_mgr = 'npm'
+-- end)
 require'lspconfig'.terraformls.setup{}
 require('complete')
 require('statusline')
@@ -128,13 +166,6 @@ vim.o.mouse = "n"
 vim.o.termguicolors = true
 -- vim.o.cmdheight = 2
 
-vim.g.gruvbox_transparent = true
-vim.g.gruvbox_italic_functions = true
-vim.g.gruvbox_flat_style = "dark"
-
---vim.cmd('colorscheme gruvbox-flat')
---vim.cmd('colorscheme blue')
-vim.cmd('colorscheme zellner')
 
 vim.g.rustfmt_autosave = 1
 
