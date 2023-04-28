@@ -59,6 +59,7 @@ if string.find(cs_result,"dark") then
   --vim.cmd('colorscheme gruvbox-flat')
   vim.cmd('colorscheme kanagawa-wave')
 else
+  require('rose-pine').setup({disable_background = true})
   vim.cmd('colorscheme rose-pine-dawn')
 end
 
