@@ -1,5 +1,5 @@
--- paq installation:
--- https://github.com/savq/paq-nvim
+-- -- paq installation:
+-- -- https://github.com/savq/paq-nvim
 --
 -- linux
 -- git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
@@ -14,7 +14,6 @@ require "paq" {
 	'neovim/nvim-lspconfig';
 	'simrat39/rust-tools.nvim';
 	'rust-lang/rust.vim';
-	--'crispgm/nvim-go';
 	'ray-x/go.nvim';
 	'crispgm/nvim-go';
 	'preservim/vimux';
@@ -36,6 +35,9 @@ require "paq" {
 	'rebelot/kanagawa.nvim';
 	{'rose-pine/neovim', as = 'rose-pine'};
 	'jose-elias-alvarez/null-ls.nvim';
+  'junegunn/fzf';
+  'junegunn/fzf.vim';
+  'sindrets/diffview.nvim';
 }
 
 -----
@@ -49,9 +51,6 @@ require "paq" {
 -- vim.g.BorlandStyle = "classic"
 -- vim.cmd('colorscheme borland')
 
---vim.cmd('colorscheme blue')
---vim.cmd('colorscheme zellner')
---vim.cmd('colorscheme kanagawa')
 local cs = io.popen('gsettings get org.gnome.desktop.interface color-scheme')
 local cs_result = cs:read("*a")
 cs:close()
@@ -59,8 +58,9 @@ if string.find(cs_result,"dark") then
   --vim.cmd('colorscheme gruvbox-flat')
   vim.cmd('colorscheme kanagawa-wave')
 else
-  require('rose-pine').setup({disable_background = true})
-  vim.cmd('colorscheme rose-pine-dawn')
+  -- require('rose-pine').setup({disable_background = true})
+  -- vim.cmd('colorscheme rose-pine-dawn')
+  vim.cmd('colorscheme zellner')
 end
 
 
