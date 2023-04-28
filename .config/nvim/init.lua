@@ -15,23 +15,27 @@ require "paq" {
 	'simrat39/rust-tools.nvim';
 	'rust-lang/rust.vim';
 	--'crispgm/nvim-go';
-  'ray-x/go.nvim';
+	'ray-x/go.nvim';
+	'crispgm/nvim-go';
+	'preservim/vimux';
+	'sebdah/vim-delve';
 	'nvim-treesitter/nvim-treesitter';
 	'nvim-lua/popup.nvim';
 	'nvim-lua/plenary.nvim';
-  'hashivim/vim-terraform';
+	'hashivim/vim-terraform';
 	'nvim-telescope/telescope.nvim';
 	'hrsh7th/nvim-compe';
 	'kyazdani42/nvim-web-devicons';
 	'morhetz/gruvbox';
-  'eddyekofo94/gruvbox-flat.nvim';
+	'eddyekofo94/gruvbox-flat.nvim';
 	'lewis6991/gitsigns.nvim';
 	'lukas-reineke/indent-blankline.nvim';
-  'kyazdani42/nvim-web-devicons';
-  'kyazdani42/nvim-tree.lua';
-  'ekickx/clipboard-image.nvim';
-  'rebelot/kanagawa.nvim';
-  {'rose-pine/neovim', as = 'rose-pine'};
+	'kyazdani42/nvim-web-devicons';
+	'kyazdani42/nvim-tree.lua';
+	'ekickx/clipboard-image.nvim';
+	'rebelot/kanagawa.nvim';
+	{'rose-pine/neovim', as = 'rose-pine'};
+	'jose-elias-alvarez/null-ls.nvim';
 }
 
 -----
@@ -120,6 +124,18 @@ end
 require('rust')
 require('go').setup()
 require'lspconfig'.jsonnet_ls.setup{}
+
+-- bash stuff
+require'lspconfig'.bashls.setup{}
+require("null-ls").setup({
+  sources = {
+    require("null-ls").builtins.formatting.shfmt, -- shell script formatting
+    require("null-ls").builtins.formatting.prettier, -- markdown formatting
+  },
+})
+vim.cmd('map <Leader>lf :lua vim.lsp.buf.formatting_sync(nil, 10000)<CR>')
+---
+
 require'lspconfig'.yamlls.setup{
     settings = {
         yaml = {
@@ -128,10 +144,7 @@ require'lspconfig'.yamlls.setup{
    }
 }
 
--- require('lspconfig').gopls.setup({})
--- require('lspconfig').pyright.setup{}
 -- require('lspconfig').vuels.setup{}
--- require('lspconfig').tsserver.setup{}
 
 -- require('go').config.update_tool('quicktype', function(tool)
 --     tool.pkg_mgr = 'npm'
@@ -184,7 +197,6 @@ require('nvim-tree').setup({
     },
     view = {}
   })
-
 
 --- clipboard image
 -- save images in the same dir as the file being edited
