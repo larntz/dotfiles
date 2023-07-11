@@ -15,7 +15,6 @@ require "paq" {
 	'simrat39/rust-tools.nvim';
 	'rust-lang/rust.vim';
 	'ray-x/go.nvim';
-	'crispgm/nvim-go';
 	'preservim/vimux';
 	'sebdah/vim-delve';
 	'nvim-treesitter/nvim-treesitter';
